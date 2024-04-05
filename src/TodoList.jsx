@@ -16,8 +16,11 @@ function TodoList() {
       ? "CoDeD By AnAnT"
       : `You have ${tasks.length} tasks`;
   }, [isHovered, tasks]);
-
+  
   function handleInputChange(e) {
+    if (e.target.value === "Enter"){
+      addTask();
+    }
     setNewTask(e.target.value);
   }
 
@@ -67,6 +70,11 @@ function TodoList() {
           type="text"
           placeholder="Enter a Task"
           value={newTask}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              addTask();
+            }
+          }}
           onChange={handleInputChange}
         />
         <button className="add-button" onClick={addTask}>
@@ -109,3 +117,4 @@ function TodoList() {
 }
 
 export default TodoList;
+
